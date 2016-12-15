@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BtCarduino</string>
+    <string name="about">About</string>
+    <string name="option">Option</string>
+    <string name="mac_address">MAC address</string>
+    <string name="button_disconnect">disconnect</string>
+    <string name="button_connect">connect</string>
+</resources>
