@@ -4,7 +4,7 @@ Bluetooth control arduino (AVR) car
 ## Requirement:
 ### Hardware:
 - Arduino x1:Arduino Nano V3.0 ATMEGA328
-- bluetooth x1: HT-05
+- bluetooth x1: HC-05
 - motor drive x1: L298N 馬達驅動板模塊 (C6B1)
 - motor x2: TT馬達 減速比1:48 
 - 電池 x3: 18650
