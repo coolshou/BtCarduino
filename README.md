@@ -18,3 +18,6 @@ Bluetooth control arduino (AVR) car
 
 ### Android libs:
 - [virtual-joystick-android](https://github.com/controlwear/virtual-joystick-android.git)
+
+### TODO:
+- change Arduino Nano V3.0 to self made ATMEGA328 board
