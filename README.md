@@ -1,6 +1,8 @@
 # BtCarduino
 Bluetooth control arduino (AVR) car
 
+ [[/blob/master/image/BtCarduino.png|alt=BtCarduino]]
+
 ## Requirement:
 ### Hardware:
 - Arduino x1:Arduino Nano V3.0 ATMEGA328
