@@ -1,7 +1,7 @@
 # BtCarduino
 Bluetooth control arduino (AVR) car
 
- [[/blob/master/image/BtCarduino.png]]
+ [[/blob/master/image/BtCarduino.png|alt=BtCarduino]]
 
 ## Requirement:
 ### Hardware:
