@@ -16,6 +16,7 @@ Bluetooth control arduino (AVR) car
 - 一些杜邦線,電線
 
 ### Arduino (AVR MCU):
+- [ArduinoThread](https://github.com/ivanseidel/ArduinoThread)
 - (TODO): [BatterySense](https://github.com/rlogiacco/BatterySense)
 
 ### Android libs:
