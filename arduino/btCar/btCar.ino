@@ -13,17 +13,7 @@ SoftwareSerial btSerial(rxPin, txPin);
 //—uart ascII 　命令—————————————-
 #define _CMDEND 0x3B // ; :end of command
 #define _CMDSEP 0x3A // : :split of command
-/*
-#define _US 0x5553 //ACII　命令值(2byte)
-#define _DS 0x4453
-#define _LS 0x4C53
-#define _RS 0x5253
-#define _UL 0x554C
-#define _DL 0x444C
-#define _UR 0x5552
-#define _DR 0x4452
-#define _SS 0x5353
-*/
+
 #define LEFT_ENA 5  //digital pin5
 #define LEFT_In1 7  //digital pin7
 #define LEFT_In2 8  //digital pin8
@@ -31,30 +21,21 @@ SoftwareSerial btSerial(rxPin, txPin);
 #define RIGHT_In4 4 //digital pin4
 #define RIGHT_ENB 6 //digital pin6
 
-#define BASESPEED 50 //basic speed
+#define BASESPEED 50 //basic speed(TODO)
 
-#define LOWSPEED 80 //前後左右的速度，可以調整為其他值
-#define HIGHSPEED 180 //轉彎的速度，可以調整為其他值
 #define MOTORSTOP 0 //Stop motor
 
 const int DELAY = 1000;
 
-uint16_t value;
-//uint8_t r_buffer[4];
-char r_buffer[13];
-
-uint8_t number;
 uint8_t command;
 
 String cmdFB="";
 String cmdRL="";
-//char* cmdFB;
-//char* cmdRL;
 int valFB=0;
 int valRL=0;
 int valStr=0;
 
-//
+//////////////////////////////////////////////////////////////
 // ThreadController that will controll all threads
 ThreadController controll = ThreadController();
 
@@ -76,6 +57,7 @@ void btCmdCallback(){
        freeDrive(cmdFB, valFB, cmdRL, valRL, valStr);
     }//end  if(command)
 }
+//////////////////////////////////////////////////////////////
 
 void setup(){
     // define pin modes for tx, rx pins:                                                                  
