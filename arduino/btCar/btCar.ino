@@ -2,8 +2,10 @@
 //    board: ATmega328p-pu
 //    2016/11/27
 //======================================
-
+#include <Thread.h>
+#include <ThreadController.h>
 #include <SoftwareSerial.h>                                                                                                                                                               
+
 #define rxPin 10     //digital pin10　接BT TXD                                                                                 
 #define txPin 9     //digital pin9　接BT RXD through voltage divider 1K Ohm + 2K Ohm (GND)
 SoftwareSerial btSerial(rxPin, txPin); 
@@ -52,6 +54,29 @@ int valFB=0;
 int valRL=0;
 int valStr=0;
 
+//
+// ThreadController that will controll all threads
+ThreadController controll = ThreadController();
+
+//bt Thread (as a pointer)
+Thread* btCmdThread = new Thread();
+
+// callback for btThread
+void btCmdCallback(){
+    if(btSerial.available())
+    {
+      String cmd  = btSerial.readStringUntil(_CMDEND);
+      Serial.println(cmd);
+      command = ParseSerialCMD(cmd);
+    }
+          
+    if(command)  //　判斷命令
+    {
+       command=0;
+       freeDrive(cmdFB, valFB, cmdRL, valRL, valStr);
+    }//end  if(command)
+}
+
 void setup(){
     // define pin modes for tx, rx pins:                                                                  
     pinMode(rxPin, INPUT);                                                                                
@@ -67,21 +92,20 @@ void setup(){
 
     stop();
     Serial.begin(38400);    //arduino serial 38400;
+
+    // Configure btCmdThread
+    btCmdThread->onRun(btCmdCallback);
+    btCmdThread->setInterval(500);
+    // Adds both threads to the controller
+    controll.add(btCmdThread);
+  
     Serial.println("btCar Start");
 }
 void loop(){
-    if(btSerial.available())
-    {
-      String cmd  = btSerial.readStringUntil(_CMDEND);
-      Serial.println(cmd);
-      command = ParseSerialCMD(cmd);
-    }
-          
-    if(command)  //　判斷命令
-    {
-       command=0;
-       freeDrive(cmdFB, valFB, cmdRL, valRL, valStr);
-    }//end  if(command)
+  // run ThreadController
+  // this will check every thread inside ThreadController,
+  // if it should run. If yes, he will run it;
+  controll.run();
 
 }
 
@@ -124,7 +148,7 @@ void freeDrive(String FB,int FBval, String RL, int RLval, int strength){
     } else {
       Serial.println("unknown FB");
     }
-    delay(DELAY);
+    //delay(DELAY);
   }
 }
 void stop() {
